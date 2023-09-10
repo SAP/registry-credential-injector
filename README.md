@@ -1,32 +1,48 @@
-# SAP Repository Template
+# Kubernetes Registry Credential Injector
 
-Default templates for SAP open source repositories, including LICENSE, .reuse/dep5, Code of Conduct, etc... All repositories on github.com/SAP will be created based on this template.
-
-## To-Do
-
-In case you are the maintainer of a new SAP open source project, these are the steps to do with the template files:
-
-- Check if the default license (Apache 2.0) also applies to your project. A license change should only be required in exceptional cases. If this is the case, please change the [license file](LICENSE).
-- Enter the correct metadata for the REUSE tool. See our [wiki page](https://wiki.wdf.sap.corp/wiki/display/ospodocs/Using+the+Reuse+Tool+of+FSFE+for+Copyright+and+License+Information) for details how to do it. You can find an initial .reuse/dep5 file to build on. Please replace the parts inside the single angle quotation marks < > by the specific information for your repository and be sure to run the REUSE tool to validate that the metadata is correct.
-- Adjust the contribution guidelines (e.g. add coding style guidelines, pull request checklists, different license if needed etc.)
-- Add information about your project to this README (name, description, requirements etc). Especially take care for the <your-project> placeholders - those ones need to be replaced with your project name. See the sections below the horizontal line and [our guidelines on our wiki page](https://wiki.wdf.sap.corp/wiki/display/ospodocs/Guidelines+for+README.md+file) what is required and recommended.
-- Remove all content in this README above and including the horizontal line ;)
-
-***
-
-# Our new open source project
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP/registry-credential-injector)](https://api.reuse.software/info/github.com/SAP/registry-credential-injector)
 
 ## About this project
 
-*Insert a short description of your project here...*
+This service can act as a [Mutating Kubernetes Admission Webhook](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers) for pods, and allows to dynamically inject image pull secrets into specific pods at creation time.
+
+Pods for which the admission webhook is called by the Kubernetes API server will be changed only if:
+- there is an annotation `regcred-injector.cs.sap.com/managed: true` set at the pod's namespace or
+- there is an annotation  `regcred-injector.cs.sap.com/managed: true` set at the pod itself.
+
+In that case, the webhook  will determine the name of the pull secret to be injected as follows:
+- if the inspected pod has an annotation `regcred-injector.cs.sap.com/pull-secret`, its value will be used for the pull secret
+- otherwise, if the pod's namespace has the annotation `regcred-injector.cs.sap.com/pull-secret`, its value will be used for the pull secret
+- otherwise, if specified, the default pull secret value (specified by command line flag) will be used
+- if no pull secret value was found by the above sources, the pod will not be changed.
+
+Note: in case this webhook has to reliably work with pods that are created or mutated by other webhooks, this one should be registered with `reinvocationPolicy: IfNeeded`.
+
+**Command line flags**
+
+|Flag                  |Optional|Default                            |Description                                                 |
+|----------------------|--------|-----------------------------------|------------------------------------------------------------|
+|-kubeconfig           |yes     |Usual kubeconfig fallback locations|                                                            |
+|-tls-key-file         |no      |-                                  |File containing the TLS private key used for SSL termination|
+|-tls-cert-file        |no      |-                                  |File containing the TLS certificate matching the private key|
+|-default-pull-secret  |yes     |-                                  |Name of the default pull secret to be injected              |
+
 
 ## Requirements and Setup
 
-*Insert a short description what is required to get your project running...*
+The recommended deployment method is to use the [Helm chart](https://github.com/sap/registry-credential-injector-helm):
+
+```bash
+helm upgrade -i registry-credential-injector oci://ghcr.io/sap/registry-credential-injector-helm/registry-credential-injector
+```
+
+## Documentation
+ 
+The API reference is here: [https://pkg.go.dev/github.com/sap/registry-credential-injector](https://pkg.go.dev/github.com/sap/registry-credential-injector).
 
 ## Support, Feedback, Contributing
 
-This project is open to feature requests/suggestions, bug reports etc. via [GitHub issues](https://github.com/SAP/<your-project>/issues). Contribution and feedback are encouraged and always welcome. For more information about how to contribute, the project structure, as well as additional contribution information, see our [Contribution Guidelines](CONTRIBUTING.md).
+This project is open to feature requests/suggestions, bug reports etc. via [GitHub issues](https://github.com/SAP/registry-credential-injector/issues). Contribution and feedback are encouraged and always welcome. For more information about how to contribute, the project structure, as well as additional contribution information, see our [Contribution Guidelines](CONTRIBUTING.md).
 
 ## Code of Conduct
 
@@ -34,4 +50,4 @@ We as members, contributors, and leaders pledge to make participation in our com
 
 ## Licensing
 
-Copyright (20xx-)20xx SAP SE or an SAP affiliate company and <your-project> contributors. Please see our [LICENSE](LICENSE) for copyright and license information. Detailed information including third-party components and their licensing/copyright information is available [via the REUSE tool](https://api.reuse.software/info/github.com/SAP/<your-project>).
+Copyright 2023 SAP SE or an SAP affiliate company and registry-credential-injector contributors. Please see our [LICENSE](LICENSE) for copyright and license information. Detailed information including third-party components and their licensing/copyright information is available [via the REUSE tool](https://api.reuse.software/info/github.com/SAP/registry-credential-injector).

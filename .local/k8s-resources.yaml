@@ -1,0 +1,102 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: registry-credential-injector-webhook
+  namespace: default
+spec:
+  ports:
+  - port: 443
+    protocol: TCP
+    targetPort: 2443
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: registry-credential-injector-webhook
+  namespace: default
+subsets:
+- addresses:
+  - ip: ${HOST_IP}
+  ports:
+  - port: 2443
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: registry-credential-injector-webhook
+  namespace: default
+spec:
+  selfSigned: {}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: registry-credential-injector-webhook
+  namespace: default
+spec:
+  dnsNames:
+  - registry-credential-injector-webhook
+  - registry-credential-injector-webhook.default
+  - registry-credential-injector-webhook.default.svc
+  - registry-credential-injector-webhook.default.svc.cluster.local
+  issuerRef:
+    name: registry-credential-injector-webhook
+  secretName: registry-credential-injector-webhook
+---
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: registry-credential-injector-webhook
+  annotations:
+    cert-manager.io/inject-ca-from: default/registry-credential-injector-webhook
+webhooks:
+- admissionReviewVersions:
+  - v1
+  clientConfig:
+    service:
+      name: registry-credential-injector-webhook
+      namespace: default
+      path: /core/v1/pod/mutate
+      port: 443
+  name: mutate.pods.core.k8s.io
+  rules:
+  - apiGroups:
+    - ''
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - pods
+    scope: Namespaced
+  objectSelector:
+    matchExpressions:
+    - key: regcred-injector.cs.sap.com/ignored
+      operator: NotIn
+      values:
+      - 'true'
+    - key: regcred-injector.cs.sap.com/disabled
+      operator: NotIn
+      values:
+      - 'true'
+  namespaceSelector:
+    matchExpressions:
+    - key: regcred-injector.cs.sap.com/ignored
+      operator: NotIn
+      values:
+      - 'true'
+    - key: regcred-injector.cs.sap.com/disabled
+      operator: NotIn
+      values:
+      - 'true'
+    - key: kubernetes.io/metadata.name
+      operator: NotIn
+      values:
+      - kube-system
+  matchPolicy: Equivalent
+  sideEffects: None
+  timeoutSeconds: 10
+  failurePolicy: Fail
+  reinvocationPolicy: IfNeeded
