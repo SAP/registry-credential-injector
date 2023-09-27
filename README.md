@@ -22,7 +22,8 @@ Note: in case this webhook has to reliably work with pods that are created or mu
 
 |Flag                  |Optional|Default                            |Description                                                 |
 |----------------------|--------|-----------------------------------|------------------------------------------------------------|
-|-kubeconfig           |yes     |Usual kubeconfig fallback locations|                                                            |
+|-kubeconfig           |yes     |Usual kubeconfig fallback locations|Path to kubeconfig file                                     |
+|-bind-address string  |yes     |:2443                              |Webhook bind address                                        |
 |-tls-key-file         |no      |-                                  |File containing the TLS private key used for SSL termination|
 |-tls-cert-file        |no      |-                                  |File containing the TLS certificate matching the private key|
 |-default-pull-secret  |yes     |-                                  |Name of the default pull secret to be injected              |
