@@ -33,12 +33,12 @@ test: fmt vet envtest ## Run tests.
 ##@ Build
 
 .PHONY: build
-build: fmt vet ## Build manager binary.
-	go build -o bin/manager main.go
+build: fmt vet ## Build webhook binary.
+	go build -o bin/webhook ./cmd/webhook
 
 .PHONY: run
 run: fmt vet ## Run a controller from your host.
-	go run ./main.go
+	go run ./cmd/webhook
 	
 ##@ Build Dependencies
 
