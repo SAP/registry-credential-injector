@@ -1,6 +1,6 @@
 module github.com/sap/registry-credential-injector
 
-go 1.21.4
+go 1.21.5
 
 require (
 	github.com/go-logr/logr v1.3.0
