@@ -1,5 +1,5 @@
 /*
-SPDX-FileCopyrightText: 2023 SAP SE or an SAP affiliate company and registry-credential-injector contributors
+SPDX-FileCopyrightText: 2024 SAP SE or an SAP affiliate company and registry-credential-injector contributors
 SPDX-License-Identifier: Apache-2.0
 */
 
