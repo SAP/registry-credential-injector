@@ -13,7 +13,7 @@ require (
 	k8s.io/client-go v0.32.0
 	k8s.io/code-generator v0.32.0
 	k8s.io/klog/v2 v2.130.1
-	sigs.k8s.io/controller-runtime/tools/setup-envtest v0.0.0-20250106172007-711b48bccf1f
+	sigs.k8s.io/controller-runtime/tools/setup-envtest v0.0.0-20250108161631-c80ea332ca13
 	sigs.k8s.io/controller-tools v0.17.0
 )
 
