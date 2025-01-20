@@ -100,6 +100,8 @@ github.com/sap/admission-webhook-runtime v0.1.54 h1:8RPDeh+3uIYv2VW65EYqUQ+W0ecn
 github.com/sap/admission-webhook-runtime v0.1.54/go.mod h1:HcH46AbhLcdHyymRrOXU4olPSN/j6DgNAfixQav0gc0=
 github.com/sap/admission-webhook-runtime v0.1.55 h1:kdmE2wzKFxpbN6iy/Kylc0q5+eMSjbpfD31Ch6kWs4U=
 github.com/sap/admission-webhook-runtime v0.1.55/go.mod h1:QEGZSozKQGyXW33u0liiacI0K/CiSjaopQzZZOBkthw=
+github.com/sap/admission-webhook-runtime v0.1.56 h1:PNeyJTDyKdrrm0TbaTvk43pnM8YtPp9lQvaGY5pZMI4=
+github.com/sap/admission-webhook-runtime v0.1.56/go.mod h1:IEwPdGp9NfKcrSA7bZSubnExCGmjzOHdkbgyjC/0vmk=
 github.com/spf13/afero v1.6.0 h1:xoax2sJ2DT8S8xA2paPFjDCScCNeWsg75VG0DLRreiY=
 github.com/spf13/afero v1.6.0/go.mod h1:Ai8FlHk4v/PARR026UzYexafAt9roJ7LcLMAmO6Z93I=
 github.com/spf13/cobra v1.8.1 h1:e5/vxKd/rZsfSJMUX1agtjeTDf+qv1/JdBF8gg5k9ZM=
@@ -236,6 +238,7 @@ sigs.k8s.io/controller-runtime/tools/setup-envtest v0.0.0-20250110065032-d19d76c
 sigs.k8s.io/controller-runtime/tools/setup-envtest v0.0.0-20250114080233-1ec7c1b76e98/go.mod h1:Is2SwCWbWAoyGVoVBA627n1SWhWaEwUhaIYSEbtzHT4=
 sigs.k8s.io/controller-runtime/tools/setup-envtest v0.0.0-20250116140835-8f7e11443ece/go.mod h1:Is2SwCWbWAoyGVoVBA627n1SWhWaEwUhaIYSEbtzHT4=
 sigs.k8s.io/controller-runtime/tools/setup-envtest v0.0.0-20250119205035-aafb269430af/go.mod h1:Is2SwCWbWAoyGVoVBA627n1SWhWaEwUhaIYSEbtzHT4=
+sigs.k8s.io/controller-runtime/tools/setup-envtest v0.0.0-20250120075036-2aa94593094f/go.mod h1:Is2SwCWbWAoyGVoVBA627n1SWhWaEwUhaIYSEbtzHT4=
 sigs.k8s.io/controller-tools v0.17.0 h1:KaEQZbhrdY6J3zLBHplt+0aKUp8PeIttlhtF2UDo6bI=
 sigs.k8s.io/controller-tools v0.17.0/go.mod h1:SKoWY8rwGWDzHtfnhmOwljn6fViG0JF7/xmnxpklgjo=
 sigs.k8s.io/controller-tools v0.17.1/go.mod h1:3QXAdrmdxYuQ4MifvbCAFD9wLXn7jylnfBPYS4yVDdc=
