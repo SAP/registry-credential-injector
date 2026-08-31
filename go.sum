@@ -112,8 +112,8 @@ github.com/prometheus/procfs v0.19.2 h1:zUMhqEW66Ex7OXIiDkll3tl9a1ZdilUOd/F6ZXw4
 github.com/prometheus/procfs v0.19.2/go.mod h1:M0aotyiemPhBCM0z5w87kL22CxfcH05ZpYlu+b4J7mw=
 github.com/rogpeppe/go-internal v1.14.1 h1:UQB4HGPB6osV0SQTLymcB4TgvyWu6ZyliaW0tI/otEQ=
 github.com/rogpeppe/go-internal v1.14.1/go.mod h1:MaRKkUm5W0goXpeCfT7UZI6fk/L7L7so1lCWt35ZSgc=
-github.com/sap/admission-webhook-runtime v0.1.106 h1:KW9PjE2AHyGn1uPhGo645SFttn4L2Plxt9AeVSoFFz4=
-github.com/sap/admission-webhook-runtime v0.1.106/go.mod h1:iNI5nedu7bOqQvZFPZ/VONoaLl8YEozJjVFpeeOAgjY=
+github.com/sap/admission-webhook-runtime v0.1.107 h1:Es3s0TA91Rn0o2dCp22K+U1eiNDQoUEWkenwJhjZQio=
+github.com/sap/admission-webhook-runtime v0.1.107/go.mod h1:hxTW/zTNfEWIh3Iwrc5qu445wPWB1umSN/c8euGOKj4=
 github.com/spf13/afero v1.12.0 h1:UcOPyRBYczmFn6yvphxkn9ZEOY65cpwGKb5mL36mrqs=
 github.com/spf13/afero v1.12.0/go.mod h1:ZTlWwG4/ahT8W7T0WQ5uYmjI9duaLQGy3Q2OAl4sk/4=
 github.com/spf13/pflag v1.0.10 h1:4EBh2KAYBwaONj6b2Ye1GiHfwjqyROoF4RwYO+vPwFk=
